@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import './topDrivers.css';
+import './topDriver.css';
 
-export default class NewsItem extends Component {
+export default class TopDriver extends Component {
   render() {
         // let line = this.props.post.link ? (
         //     <a href={this.props.post.link}>{this.props.driver.id}</a>
@@ -21,6 +21,7 @@ export default class NewsItem extends Component {
                     <span>
                         {this.props.driver.rating}
                     </span>
+                    <p></p>
                 </span>
             </Fragment>
         );
