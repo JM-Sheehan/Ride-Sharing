@@ -6,7 +6,7 @@ import TopDriverList from '../src/components/topDriverList';
 import SearchBar from '../src/components/searchBar';
 
 const driver = {
-    id: 1,
+    driveId: 1,
     name: 'Joe Bloggs',
     journeys: 10,
     rating: 4.3,
@@ -41,7 +41,6 @@ storiesOf('Ride Sharing App/Search Bar', module)
         return <SearchBar locations = {defaultLocations}/>
     });
 
-    
 storiesOf('Ride Sharing App/Top Drivers List', module)
     .add('default', () => {
         const defaultDrivers = [
