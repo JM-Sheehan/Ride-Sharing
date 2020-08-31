@@ -1,21 +1,11 @@
 const buttons = {
     normal: {
-        leftButtonVal: "Edit",
-        rightButtonVal: "Delete",
-        leftButtonColor: "btn-default",
-        rightButtonColor: "btn-danger"
+        buttonVal: "book",
+        buttonColor: "btn-default",
     },
-    delete: {
-        leftButtonVal: "Cancel",
-        rightButtonVal: "Confirm",
-        leftButtonColor: "btn-light",
-        rightButtonColor: "btn-danger"
-    },
-    edit: {
-        leftButtonVal: "Save",
-        rightButtonVal: "Cancel",
-        leftButtonColor: "btn-danger",
-        rightButtonColor: "btn-light"
+    booked: {
+        buttonVal: "booked",
+        buttonColor: "btn-danger",
     }
 };
 export default buttons;

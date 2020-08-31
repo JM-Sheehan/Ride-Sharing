@@ -6,17 +6,21 @@ import { Link } from "react-router-dom";
 
 class Ride extends Component {
     state = {
-        id: this.props.driverId,
-        driverName: this.props.driverName,
+        id: this.props.ride.driverId,
+        driverName: api.getDriver(this.props.ride.driverId).name,
         start: this.props.ride.start,
         end: this.props.ride.end,
         cost: this.props.ride.cost,
+        day: this.props.ride.day,
+        month: this.props.ride.month,
+        year: this.props.ride.year,
+        time: this.props.ride.start_time,
         status: ""
     };
 
     handleBooking = event => {
         this.setState({
-            status: 'book'
+            status: 'booked'
         })
     };
 
@@ -29,7 +33,7 @@ class Ride extends Component {
         let activeButtons = buttons.normal;
         let buttonHandler = this.handleBooking;
         let cardColor = "bg-white";
-        if (this.state.status === "book") {
+        if (this.state.status === "booked") {
             cardColor = "bg-primary";
             buttonHandler = this.handleConfirmBooking;
         }
@@ -37,25 +41,32 @@ class Ride extends Component {
             <div className={`card  ${cardColor}`}>
                 <div className="card-body">
                     <h5 className="card-title ">
-                        <Link
+                        {/* <Link
                             to={`/contacts/${this.props.ride.driverId}`}
-                        >
-                            {`${this.props.ride.driverName}`}
-                        </Link>
+                        > */}
+                        {`Driver Name: ${this.state.driverName}`}
+                        {/* </Link> */}
                     </h5>
                     <Fragment>
                         <p>
-                            {/* <FontAwesomeIcon icon={["fas", "envelope"]} /> */}
-                            <span> {this.props.ride.start}</span>
+                            <span> {`Ride id: ${this.state.id}`}</span>
                         </p>
                         <p>
-                            {/* <FontAwesomeIcon icon={["fas", "phone"]} /> */}
-                            <span> {this.props.ride.end} </span>
+                            <span> {`Start Point: ${this.state.start}`}</span>
                         </p>
                         <p>
-                            {/* <FontAwesomeIcon icon={["fas", "phone"]} /> */}
-                            <span> {this.props.ride.cost} </span>
+                            <span> {`Destination: ${this.state.end}`}</span>
                         </p>
+                        <p>
+                            <span> {`Start Date: ${this.state.day}/ ${this.state.month}/ ${this.state.year}`}</span>
+                        </p>
+                        <p>
+                            <span> {`Start Time: ${this.state.time}`}</span>
+                        </p>
+                        <p>
+                            <span> {`Cost: ${this.state.cost}`}</span>
+                        </p>
+
                     </Fragment>
                 </div>
                 <div className="card-footer">
@@ -69,12 +80,33 @@ class Ride extends Component {
                             className={"btn w-100 " + activeButtons.buttonColour}
                             onClick={buttonHandler}
                         >
-                            {activeButtons.buttonVal}
+                            Book
+                            {/* {activeButtons.buttonVal} */}
                         </button>
 
                     </div>
                 </div>
             </div>
+            // <div>
+            // <div>
+            //      {this.state.id}
+            //      <p>
+
+            //      </p>
+            //     {this.state.driverName}
+            //     <p>
+            //     </p>
+            //     {this.state.start}
+            //     <p>
+            //     </p>
+            //     {this.state.end}
+            //     <p>
+            //     </p>
+            //     {this.state.cost}
+            //    <p>
+            //        {this.state.driverPhone}
+            //    </p>
+            // </div>
         );
     }
 }
