@@ -172,8 +172,8 @@ class App extends Component {
             case 2:
                 main_panel =
                     <span>
-                        <FilterControls onUserInput=
-                            {this.handleChange} locations={defaultLocations} />
+                        {/* <FilterControls onUserInput=
+                            {this.handleChange} locations={defaultLocations} /> */}
                         <RideList rides={sortedRides} update ={this.searchRides} />
                     </span>;
                 break;

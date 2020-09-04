@@ -9,8 +9,14 @@ export default class TopDriver extends Component {
             <Fragment>
                 <span className="topdriver">
                     <span>
+                    {/* <Link
+                            to={`/drivers/${this.props.ride.driverId}`}
+                        >
+                            {`Driver Name: ${this.state.driverName}`}
+                        </Link> */}
+
                         <Link
-                            to={`/drivers/${this.props.driver.id}`}
+                            to={`/drivers/${this.props.driver.driverId}`}
                         >
                             <b> {this.props.driver.name}</b>
                         </Link>
