@@ -6,7 +6,10 @@ import TopDriver from '../src/components/driver';
 import TopDriverList from '../src/components/driverList';
 import SearchBar from '../src/components/searchBar';
 import Ride from '../src/components/ride';
+import RideList from '../src/components/rideList';
 import { MemoryRouter, Route } from "react-router";
+import FilterControls from '../src/components/filterControls';
+import api from "../src/dataStore/stubAPI"; // NEW
 
 const driver = {
     driveId: 1,
@@ -42,27 +45,28 @@ storiesOf('Ride Sharing App/Top Driver', module)
     .add('No hyperlink', () => <TopDriver driver={{ ...driver, link: '' }} />
     )
 
-storiesOf('Ride Sharing App/Search Bar', module)
-    .add('default', () => {
-        const defaultLocations =
-            [
-                'Waterford',
-                'Dungarvan',
-                'Tramore',
-                'Cork',
-                'Dublin'
-            ];
-        return <SearchBar locations={defaultLocations} />
-    });
+
 
 storiesOf("Ride Sharing App/ Ride", module).addDecorator(story => (
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
-  ))
-  .add("default", () => ( 
-     <Ride ride={sampleRide} deleteHandler={action('Delete confirmed') }/>
-  ));
+))
+    .add("default", () => (
+        <Ride ride={sampleRide} deleteHandler={action('Delete confirmed')} />
+    ));
 
-storiesOf('Ride Sharing App/Top Drivers List', module)
+storiesOf("Ride Sharing App/ Ride List", module)
+    .addDecorator(story => (
+        <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+    ))
+    .add("default", () => {
+        let sampleRides = api.getAllRides();
+        return <RideList rides={sampleRides} />
+    });
+
+storiesOf('Ride Sharing App/ Drivers List', module)
+    .addDecorator(story => (
+        <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+    ))
     .add('default', () => {
         const defaultDrivers = [
             {
@@ -124,3 +128,45 @@ storiesOf('Ride Sharing App/Top Drivers List', module)
         ];
         return <TopDriverList drivers={defaultDrivers} />
     });
+
+// storiesOf('Ride Sharing App/Search Bar', module)
+//     .add('default', () => {
+//         const defaultLocations =
+//             [
+//                 'Waterford',
+//                 'Dungarvan',
+//                 'Tramore',
+//                 'Cork',
+//                 'Dublin'
+//             ];
+//         return <SearchBar locations={defaultLocations} />
+//     });
+
+storiesOf("Ride Sharing App/Search Bar", module)
+    // .addDecorator(story => (
+    //     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+    // ))
+    .add("default", () => {
+        const defaultLocations =
+            [
+                'Waterford',
+                'Dungarvan',
+                'Tramore',
+                'Cork',
+                'Dublin'
+            ];
+        return <SearchBar locations={defaultLocations}
+            onUserInput={action('Search criteria changes')} />
+    });
+
+storiesOf("Ride Sharing App/Filter Controls", module)
+    // .addDecorator(story => (
+    //     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+    // ))
+    .add("default", () => {
+        const locations = [sampleRide, sampleRide, sampleRide, sampleRide, sampleRide]
+        return <FilterControls locations={locations}
+            onUserInput={action('Search criteria changes')} />
+    });
+
+

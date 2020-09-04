@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 class Ride extends Component {
     state = {
-        id: this.props.ride.driverId,
+        id: this.props.ride.ride_id,
         driverName: api.getDriver(this.props.ride.driverId).name,
         start: this.props.ride.start,
         end: this.props.ride.end,
@@ -18,34 +18,24 @@ class Ride extends Component {
         status: ""
     };
 
-    handleBooking = event => {
-        this.setState({
-            status: 'booked'
-        })
-    };
+
 
     handleConfirmBooking = event => {
-        event.preventDefault();
-        this.props.bookingHandler(this.state.driverId);
+        api.bookRide(this.state.id);
     };
 
     render() {
-        let activeButtons = buttons.normal;
-        let buttonHandler = this.handleBooking;
         let cardColor = "bg-white";
-        if (this.state.status === "booked") {
-            cardColor = "bg-primary";
-            buttonHandler = this.handleConfirmBooking;
-        }
+
         return (
             <div className={`card  ${cardColor}`}>
                 <div className="card-body">
                     <h5 className="card-title ">
-                        {/* <Link
-                            to={`/contacts/${this.props.ride.driverId}`}
-                        > */}
-                        {`Driver Name: ${this.state.driverName}`}
-                        {/* </Link> */}
+                        <Link
+                            to={`/drivers/${this.props.ride.driverId}`}
+                        >
+                            {`Driver Name: ${this.state.driverName}`}
+                        </Link>
                     </h5>
                     <Fragment>
                         <p>
@@ -75,15 +65,15 @@ class Ride extends Component {
                         role="group"
                         aria-label="..."
                     >
-                        <button
-                            type="button"
-                            className={"btn w-100 " + activeButtons.buttonColour}
-                            onClick={buttonHandler}
-                        >
-                            Book
-                            {/* {activeButtons.buttonVal} */}
-                        </button>
-
+                        <Link to="/">
+                            <button
+                                type="button"
+                                className={"btn w-100 "}
+                                onClick={this.handleConfirmBooking}
+                            >
+                                Book
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

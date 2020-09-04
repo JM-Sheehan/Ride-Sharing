@@ -1,19 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import './topDriver.css';
+import { Link } from "react-router-dom";
+
 
 export default class TopDriver extends Component {
-  render() {
-        // let line = this.props.post.link ? (
-        //     <a href={this.props.post.link}>{this.props.driver.id}</a>
-        // ) : (
-        //     <span>{this.props.driver.name}</span>
-        // );
+    render() {
         return (
             <Fragment>
                 <span className="topdriver">
-                    {/* {line} */}
                     <span>
-                       <b> {this.props.driver.name}</b>
+                        <Link
+                            to={`/drivers/${this.props.driver.id}`}
+                        >
+                            <b> {this.props.driver.name}</b>
+                        </Link>
                     </span>
                     <span>
                         {this.props.driver.journeys}
